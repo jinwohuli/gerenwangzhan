@@ -1372,7 +1372,7 @@ body.editing .add-list-item-btn { display: inline-flex; }
 @media (max-width: 768px) {
   :root { --pad-x: 22px; }
   html, body { width: 100%; overflow-x: hidden; }
-  body { font-size: 15px; padding-bottom: 78px; }
+  body { font-size: 15px; }
 
   .nav {
     padding: 12px var(--pad-x);
@@ -1392,37 +1392,11 @@ body.editing .add-list-item-btn { display: inline-flex; }
     font-size: 11px;
     letter-spacing: 1px;
   }
-  .nav-links {
-    position: fixed;
-    left: max(10px, env(safe-area-inset-left));
-    right: max(10px, env(safe-area-inset-right));
-    bottom: max(10px, env(safe-area-inset-bottom));
-    z-index: 120;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
-    margin: 0;
-    padding: 8px;
-    background: rgba(6,7,11,0.9);
-    border: 1px solid var(--line-2);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.65);
-    backdrop-filter: blur(20px) saturate(150%);
-  }
-  .nav-links a {
-    justify-content: center;
-    flex-direction: column;
-    gap: 2px;
-    min-height: 46px;
-    padding: 5px 2px;
-    font-size: 11px;
-    letter-spacing: 1px;
-  }
-  .nav-links a i { font-size: 9px; color: var(--gold); }
-  .nav-links a::after { bottom: 2px; }
+  .nav-links { display: none !important; }
 
   .edit-toggle {
     right: 14px;
-    bottom: calc(86px + env(safe-area-inset-bottom));
+    bottom: 20px;
     padding: 9px 12px;
     font-size: 11px;
     letter-spacing: 1px;
@@ -1517,10 +1491,8 @@ body.editing .add-list-item-btn { display: inline-flex; }
   .logo-name { max-width: 80px; }
   .ln-en { display: none; }
   .nav-cta { padding: 7px 10px; font-size: 10px; }
-  .nav-links { grid-template-columns: repeat(3, 1fr); }
-  .nav-links a { min-height: 40px; }
-  body { padding-bottom: 118px; }
-  .edit-toggle { bottom: calc(128px + env(safe-area-inset-bottom)); }
+  .nav-links { display: none !important; }
+  .edit-toggle { bottom: 20px; }
   .hero { min-height: 680px; }
   .hero-inner { padding-bottom: 140px; }
   .hm-right, .hero-foot { grid-template-columns: 1fr; }
