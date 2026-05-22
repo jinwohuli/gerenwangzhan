@@ -20,14 +20,57 @@
     requestAnimationFrame(tick);
   }
 
-  // 卷帘开启 - 仅关闭最初的 loader（如果它已被 replayHomeLoader 替换走，就不操作新 loader）
-  setTimeout(() => {
+  // 卷帘开启 - 等待视频资源就绪后再关闭 loader
+  // 最小显示 2.2s（让动画完整展现），最大等待 8s（防止视频加载失败导致永远卡住）
+  function closeLoader() {
     if (initialLoader && initialLoader.isConnected) {
       initialLoader.classList.add('done');
     }
-    // 如果 initialLoader 已被替换出 DOM（说明用户提前点击导航触发了 replay），不做任何操作
-    // 让 replayHomeLoader 内部的 setTimeout 自己控制新 loader
-  }, 3200);
+  }
+  const MIN_LOADER = 2200;
+  const MAX_LOADER = 8000;
+  const startTime = performance.now();
+  let videoReady = false;
+  let loaderClosed = false;
+
+  function tryCloseLoader() {
+    if (loaderClosed) return;
+    const elapsed = performance.now() - startTime;
+    if (elapsed >= MIN_LOADER && videoReady) {
+      loaderClosed = true;
+      closeLoader();
+    }
+  }
+
+  // 监听视频就绪
+  const heroVid = document.getElementById('heroVideo');
+  if (heroVid) {
+    if (heroVid.readyState >= 3) {
+      // 视频已经缓存好了
+      videoReady = true;
+      tryCloseLoader();
+    } else {
+      heroVid.addEventListener('canplay', () => {
+        videoReady = true;
+        tryCloseLoader();
+      }, { once: true });
+      heroVid.addEventListener('loadeddata', () => {
+        videoReady = true;
+        tryCloseLoader();
+      }, { once: true });
+    }
+  } else {
+    // 没有视频元素，最小时间后直接关闭
+    videoReady = true;
+  }
+
+  // 最小时间到达时检查一次
+  setTimeout(tryCloseLoader, MIN_LOADER);
+  // 最大超时兜底（视频加载太慢或失败时强制关闭）
+  setTimeout(() => {
+    videoReady = true;
+    tryCloseLoader();
+  }, MAX_LOADER);
 
   Store.init();
   Render.all();
@@ -213,29 +256,60 @@ function initPageTransition() {
       requestAnimationFrame(tick);
     }
 
-    // 5) 3.2s 后卷帘开启
-    setTimeout(() => {
-      newLoader.classList.add('done');
-      // 如果目标是首页，重启视频开场
-      if (isHome && heroVideo) {
-        // 关键：必须加回 ready 类，否则视频虽然在播但 opacity:0 不可见
-        heroVideo.classList.add('ready');
-        heroVideo.loop = true;
-        try { heroVideo.currentTime = 0; } catch (e) {}
-        const p = heroVideo.play();
-        if (p && typeof p.catch === 'function') p.catch(() => {});
-        // 重置 initHeroVideo 内的 entered 状态，让"点击进入"提示能再次显示
-        if (typeof window.resetHeroEntered === 'function') {
-          window.resetHeroEntered();
-        }
-        setTimeout(() => {
-          if (heroHint && hero && !hero.classList.contains('entered')) {
-            heroHint.classList.add('visible');
+    // 5) 等待视频就绪后卷帘开启（最小 2.2s 保证动画完整））
+    const REPLAY_MIN = 2200;
+    const REPLAY_MAX = 8000;
+    const replayStart = performance.now();
+    let replayVideoReady = !isHome || !heroVideo; // 非首页不需要等视频
+    let replayClosed = false;
+
+    function closeReplayLoader() {
+      if (replayClosed) return;
+      const elapsed = performance.now() - replayStart;
+      if (elapsed >= REPLAY_MIN && replayVideoReady) {
+        replayClosed = true;
+        newLoader.classList.add('done');
+        // 如果目标是首页，重启视频开场
+        if (isHome && heroVideo) {
+          heroVideo.classList.add('ready');
+          heroVideo.loop = true;
+          try { heroVideo.currentTime = 0; } catch (e) {}
+          const p = heroVideo.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+          if (typeof window.resetHeroEntered === 'function') {
+            window.resetHeroEntered();
           }
-        }, 1600);
+          setTimeout(() => {
+            if (heroHint && hero && !hero.classList.contains('entered')) {
+              heroHint.classList.add('visible');
+            }
+          }, 1600);
+        }
+        setTimeout(() => { unlockTransition(); }, 1200);
       }
-      setTimeout(() => { unlockTransition(); }, 1200);
-    }, 3200);
+    }
+
+    if (isHome && heroVideo) {
+      if (heroVideo.readyState >= 3) {
+        replayVideoReady = true;
+        closeReplayLoader();
+      } else {
+        heroVideo.addEventListener('canplay', () => {
+          replayVideoReady = true;
+          closeReplayLoader();
+        }, { once: true });
+        heroVideo.addEventListener('loadeddata', () => {
+          replayVideoReady = true;
+          closeReplayLoader();
+        }, { once: true });
+      }
+    }
+
+    setTimeout(closeReplayLoader, REPLAY_MIN);
+    setTimeout(() => {
+      replayVideoReady = true;
+      closeReplayLoader();
+    }, REPLAY_MAX);
   }
 
   function jumpTo(hash, opts) {
