@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>郑超 — AIGC / 影视 / 三维 / 创意</title>
+<meta name="description" content="郑超 个人作品集 — AIGC、影视、3D 与创意工作" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Ma+Shan+Zheng&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/main.css?v=20260522n" />
+<link rel="stylesheet" href="./styles/sections.css?v=20260522n" />
+<link rel="stylesheet" href="./styles/portfolio.css?v=20260522n" />
+</head>
+<body>
+
+<!-- 自定义光标 -->
+<div class="cursor-ring" id="cursorRing"><i></i></div>
+<div class="cursor-dot" id="cursorDot"><i></i></div>
+
+<!-- 滚动进度 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- 全屏氛围层 -->
+<div class="bg-base" aria-hidden="true"></div>
+<div class="bg-stars" aria-hidden="true"></div>
+<div class="bg-grain" aria-hidden="true"></div>
+
+<!-- 全局朱红飘带 -->
+<div class="ambient-ribbons" aria-hidden="true">
+  <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="ar-r1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#d62828" stop-opacity="0"/>
+        <stop offset="30%" stop-color="#d62828" stop-opacity="0.55"/>
+        <stop offset="60%" stop-color="#ef3a3f" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#7a1414" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="ar-r2" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#ef3a3f" stop-opacity="0"/>
+        <stop offset="50%" stop-color="#d62828" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="#7a1414" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="ar-g" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f5d063" stop-opacity="0"/>
+        <stop offset="50%" stop-color="#ffe89c" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#d9b167" stop-opacity="0"/>
+      </linearGradient>
+      <filter id="ar-blur"><feGaussianBlur stdDeviation="3"/></filter>
+      <filter id="ar-blur-l"><feGaussianBlur stdDeviation="14"/></filter>
+    </defs>
+    <!-- 大块朦胧朱红 -->
+    <path d="M -200,400 Q 400,200 800,500 T 1500,400 T 2200,650"
+          stroke="url(#ar-r1)" stroke-width="120" fill="none" stroke-linecap="round" filter="url(#ar-blur-l)" opacity="0.5" class="ribbon-l1"/>
+    <!-- 锋利飘带 -->
+    <path d="M -200,400 Q 400,200 800,500 T 1500,400 T 2200,650"
+          stroke="url(#ar-r1)" stroke-width="14" fill="none" stroke-linecap="round" filter="url(#ar-blur)" class="ribbon-l2"/>
+    <!-- 第二条 -->
+    <path d="M 2200,850 Q 1500,650 1000,920 T 200,800 T -200,1000"
+          stroke="url(#ar-r2)" stroke-width="10" fill="none" stroke-linecap="round" filter="url(#ar-blur)" class="ribbon-l3"/>
+    <!-- 金色光流 -->
+    <path d="M -200,700 Q 600,580 1100,780 T 2200,700"
+          stroke="url(#ar-g)" stroke-width="22" fill="none" stroke-linecap="round" filter="url(#ar-blur)" class="ribbon-l4"/>
+  </svg>
+</div>
+
+<!-- 金色粒子 -->
+<div class="ambient-particles" id="particles" aria-hidden="true"></div>
+
+<!-- 开场 -->
+<!-- 开场 Loader（电影感卷帘 + 墨滴 + 印章） -->
+<div id="loader" class="loader">
+  <!-- 上下卷帘门 -->
+  <div class="ld-curtain ld-curtain-top"></div>
+  <div class="ld-curtain ld-curtain-bottom"></div>
+
+  <!-- 墨滴晕开背景 -->
+  <div class="ld-ink">
+    <svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="ld-ink-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ef3a3f" stop-opacity="0.6"/>
+          <stop offset="40%" stop-color="#7a1414" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#03050b" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="ld-noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/>
+          <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0"/>
+          <feComposite in2="SourceGraphic" operator="in"/>
+        </filter>
+      </defs>
+      <circle class="ld-ink-blob" cx="400" cy="400" r="0" fill="url(#ld-ink-grad)" filter="url(#ld-noise)"/>
+    </svg>
+  </div>
+
+  <!-- 中央内容 -->
+  <div class="ld-center">
+    <!-- 印章 -->
+    <div class="ld-seal">
+      <svg viewBox="0 0 120 120">
+        <rect class="ld-seal-rect" x="6" y="6" width="108" height="108" fill="none" stroke="#ef3a3f" stroke-width="2.5"/>
+        <text x="60" y="56" text-anchor="middle" font-family="Ma Shan Zheng, serif" font-size="44" fill="#ef3a3f" letter-spacing="2">郑</text>
+        <text x="60" y="98" text-anchor="middle" font-family="Ma Shan Zheng, serif" font-size="32" fill="#ef3a3f">超</text>
+      </svg>
+    </div>
+
+    <!-- 中文名（逐字浮现） -->
+    <div class="ld-name">
+      <span style="--i:0">个</span>
+      <span style="--i:1">人</span>
+      <span style="--i:2">作</span>
+      <span style="--i:3">品</span>
+      <span style="--i:4">集</span>
+    </div>
+
+    <!-- 英文副标题 -->
+    <div class="ld-sub">
+      <span class="ld-sub-line"></span>
+      <span class="ld-sub-text">ZHENG&nbsp;CHAO&nbsp;&nbsp;·&nbsp;&nbsp;PORTFOLIO&nbsp;2026</span>
+      <span class="ld-sub-line"></span>
+    </div>
+
+    <!-- 进度数字（替代进度条） -->
+    <div class="ld-counter">
+      <span class="ld-counter-num" id="ldCounterNum">00</span>
+      <span class="ld-counter-pct">%</span>
+    </div>
+  </div>
+
+  <!-- 四角雕花 -->
+  <span class="ld-corner ld-corner-tl"></span>
+  <span class="ld-corner ld-corner-tr"></span>
+  <span class="ld-corner ld-corner-bl"></span>
+  <span class="ld-corner ld-corner-br"></span>
+</div>
+
+<!-- 页面跳转过渡（朱红墨幕扫过 + 章节标识） -->
+<div id="pageTransition" class="page-transition" aria-hidden="true">
+  <div class="pt-curtain"></div>
+  <div class="pt-grain"></div>
+  <div class="pt-content">
+    <div class="pt-mark">
+      <span class="pt-num" id="ptNum">01</span>
+      <span class="pt-divider"></span>
+      <span class="pt-cn" id="ptCn">关于</span>
+    </div>
+    <div class="pt-en" id="ptEn">ABOUT</div>
+  </div>
+</div>
+
+<!-- 编辑开关 -->
+<button id="editToggle" class="edit-toggle" title="编辑模式">
+  <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+  <span>编辑</span>
+</button>
+
+<!-- 导航 -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <span class="logo-mark">郑</span>
+      <span class="logo-name">
+        <span class="ln-cn">郑超</span>
+        <span class="ln-en">个人作品集</span>
+      </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about"><i>01</i>关于</a></li>
+      <li><a href="#education"><i>02</i>教育</a></li>
+      <li><a href="#experience"><i>03</i>经历</a></li>
+      <li><a href="#skills"><i>04</i>技能</a></li>
+      <li><a href="#works"><i>05</i>作品</a></li>
+      <li><a href="#contact"><i>06</i>联系</a></li>
+    </ul>
+    <a href="#home" class="nav-cta" data-home-cta>首页 <span>↑</span></a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="hero">
+
+  <!-- 视频背景 -->
+  <div class="hero-video-wrap">
+    <video class="hero-video" id="heroVideo"
+           src="https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/hero.mp4"
+           muted playsinline preload="auto"
+           autoplay></video>
+    <div class="hero-video-mask"></div>
+  </div>
+
+  <!-- 远山雾气（叠在视频之上） -->
+  <div class="hero-mountains" aria-hidden="true">
+    <svg class="hm-far" viewBox="0 0 1440 500" preserveAspectRatio="none">
+      <path d="M0,350 C150,220 320,300 480,250 C660,200 800,310 980,270 C1140,235 1280,290 1440,260 L1440,500 L0,500 Z" fill="#0e1731"/>
+    </svg>
+    <svg class="hm-mid" viewBox="0 0 1440 500" preserveAspectRatio="none">
+      <path d="M0,400 C160,320 320,360 500,330 C680,300 820,380 1000,360 C1180,340 1320,370 1440,360 L1440,500 L0,500 Z" fill="#080d1c"/>
+    </svg>
+    <svg class="hm-near" viewBox="0 0 1440 500" preserveAspectRatio="none">
+      <path d="M0,450 C200,400 380,420 560,400 C760,385 920,425 1120,410 C1280,395 1380,420 1440,410 L1440,500 L0,500 Z" fill="#03050b"/>
+    </svg>
+  </div>
+
+  <!-- HERO 内容（默认隐藏，点击后浮现） -->
+  <div class="hero-inner" id="heroInner">
+    <div class="hero-eyebrow">
+      <span class="he-dot"></span>
+      <span class="he-text">作品集 · 2026</span>
+      <span class="he-divider"></span>
+      <span class="he-text he-text-2">接受新项目合作</span>
+    </div>
+
+    <div class="hero-headline">
+      <h1>
+        <span class="hl-line"><span>仗剑而行，</span></span>
+        <span class="hl-line"><span>以帧定山河。</span></span>
+      </h1>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hm-left">
+        <div class="hm-name">郑 超</div>
+        <div class="hm-role">AIGC 创作者 · 三维动画 · 影视设计</div>
+      </div>
+      <div class="hm-right">
+        <a href="#works" class="btn btn-primary" data-magnetic data-replay-loader>
+          查看作品 <svg viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost" data-magnetic data-replay-loader>联系我</a>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <div class="hf-item">
+        <div class="hf-num">
+          <span data-editable data-key="hero_stat1_num">2300</span><span class="hf-unit" data-editable data-key="hero_stat1_unit">M+</span>
+        </div>
+        <div class="hf-label" data-editable data-key="hero_stat1_label">作品累计播放量</div>
+      </div>
+      <div class="hf-item">
+        <div class="hf-num">
+          <span data-editable data-key="hero_stat2_num">15</span><span class="hf-unit" data-editable data-key="hero_stat2_unit">+</span>
+        </div>
+        <div class="hf-label" data-editable data-key="hero_stat2_label">代表作品</div>
+      </div>
+      <div class="hf-item">
+        <div class="hf-num">
+          <span data-editable data-key="hero_stat3_num">03</span><span class="hf-unit" data-editable data-key="hero_stat3_unit">年</span>
+        </div>
+        <div class="hf-label" data-editable data-key="hero_stat3_label">创作经验</div>
+      </div>
+      <div class="hf-item">
+        <div class="hf-num">
+          <span data-editable data-key="hero_stat4_num">不限</span>
+        </div>
+        <div class="hf-label" data-editable data-key="hero_stat4_label">期望工作地</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 点击提示（视频播放期间显示） -->
+  <div class="hero-cta-hint" id="heroCtaHint">
+    <span class="hch-dot"></span>
+    <span class="hch-text">点击屏幕进入</span>
+  </div>
+
+  <!-- 滚动提示 -->
+  <div class="scroll-cue">
+    <span>下滑</span>
+    <div class="sc-line"></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="section section-about">
+  <div class="sec-head">
+    <div class="sh-num">01 / 关于</div>
+    <h2 class="sh-title">关于我</h2>
+    <div class="sh-en">个人简介</div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-portrait">
+      <div class="ap-frame">
+        <div class="ap-img" data-editable-img data-key="about_portrait"></div>
+      </div>
+      <div class="ap-caption">
+        <div class="ap-name">郑 超</div>
+        <div class="ap-en">视觉创作者</div>
+      </div>
+    </div>
+
+    <div class="about-body">
+      <p class="about-lead" data-editable data-key="about_lead">
+        热爱影视、游戏与 AIGC 的视觉创作者，专注于将创意快速转化为高完成度的视频与交互作品。
+      </p>
+
+      <ul class="about-list" id="aboutPoints" data-list-key="about_points"></ul>
+
+      <div class="about-info">
+        <div class="ai-row">
+          <span class="ai-key">姓名</span>
+          <span class="ai-val">郑超</span>
+        </div>
+        <div class="ai-row">
+          <span class="ai-key">专业</span>
+          <span class="ai-val">影视技术 · 四川传媒学院</span>
+        </div>
+        <div class="ai-row">
+          <span class="ai-key">方向</span>
+          <span class="ai-val">AIGC · 影视 · 三维 · 创意</span>
+        </div>
+        <div class="ai-row">
+          <span class="ai-key">所在</span>
+          <span class="ai-val" data-editable data-key="about_location">期望工作地 不限</span>
+        </div>
+        <div class="ai-row">
+          <span class="ai-key">电话</span>
+          <span class="ai-val"><a href="tel:18837877088" data-editable data-key="contact_phone">188 3787 7088</a></span>
+        </div>
+        <div class="ai-row">
+          <span class="ai-key">邮箱</span>
+          <span class="ai-val"><a href="mailto:424573509@qq.com" data-editable data-key="contact_email">424573509@qq.com</a></span>
+        </div>
+      </div>
+
+      <div class="about-social">
+        <a href="https://v.douyin.com/mI7HSZZaVoc/" target="_blank" rel="noopener" class="as-link">
+          <span>抖音</span><span>主页</span><span>→</span>
+        </a>
+        <a href="https://xhslink.com/m/1tJHti80kxD" target="_blank" rel="noopener" class="as-link">
+          <span>小红书</span><span>主页</span><span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORKS / 作品集 ============ -->
+<!-- ============ EXPERIENCE / 经历 ============ -->
+<!-- ============ EDUCATION ============ -->
+<section id="education" class="section section-education">
+  <div class="sec-head">
+    <div class="sh-num">02 / 教育</div>
+    <h2 class="sh-title">教育背景</h2>
+    <div class="sh-en">学习经历</div>
+  </div>
+
+  <div class="edu-list" id="educationList" data-list-key="education"></div>
+</section>
+
+<!-- ============ EXPERIENCE / 经历 ============ -->
+<section id="experience" class="section section-experience">
+  <div class="sec-head">
+    <div class="sh-num">03 / 经历</div>
+    <h2 class="sh-title">工作与项目经历</h2>
+    <div class="sh-en">职业经历与项目实践</div>
+  </div>
+
+  <div class="exp-columns">
+    <!-- 工作经历 -->
+    <div class="exp-col">
+      <div class="exp-col-head">
+        <span class="ec-tag">工作经历</span>
+        <span class="ec-en">就职单位</span>
+      </div>
+      <div class="exp-list" id="timelineWork" data-list-key="experience"></div>
+    </div>
+
+    <!-- 项目经历 -->
+    <div class="exp-col">
+      <div class="exp-col-head">
+        <span class="ec-tag">项目经历</span>
+        <span class="ec-en">个人项目</span>
+      </div>
+      <div class="proj-list" id="projectsGrid" data-list-key="projects"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="section section-skills">
+  <div class="sec-head">
+    <div class="sh-num">04 / 技能</div>
+    <h2 class="sh-title">专业技能</h2>
+    <div class="sh-en">能力与工具</div>
+  </div>
+
+  <div class="skills-grid" id="skillsHex" data-list-key="skills"></div>
+
+  <div class="tools-block">
+    <div class="tools-head">
+      <span>常用工具</span>
+      <span class="th-line"></span>
+      <span class="th-en">工 具 链</span>
+    </div>
+    <div class="tools-cloud" id="toolsCloud" data-list-key="tools"></div>
+  </div>
+</section>
+
+<!-- ============ WORKS / 作品集 ============ -->
+<section id="works" class="section section-works">
+  <div class="sec-head">
+    <div class="sh-num">05 / 作品</div>
+    <h2 class="sh-title">作品集</h2>
+    <div class="sh-en">精选作品 · 可上传、编辑、增删</div>
+  </div>
+
+  <div class="works-toolbar">
+    <div class="filter-tabs" id="portfolioFilters">
+      <button class="filter-tab active" data-filter="all">全部</button>
+      <button class="filter-tab" data-filter="video">影视</button>
+      <button class="filter-tab" data-filter="3d">三维</button>
+      <button class="filter-tab" data-filter="game">游戏</button>
+      <button class="filter-tab" data-filter="web">交互</button>
+      <button class="filter-tab" data-filter="image">图像</button>
+    </div>
+    <button class="btn btn-add" id="addWorkBtn" data-magnetic>
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>添加作品</span>
+    </button>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid"></div>
+
+  <div class="portfolio-empty" id="portfolioEmpty" hidden>
+    <p>暂无作品，点击右上"添加作品"开始上传。</p>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section section-contact">
+  <div class="sec-head">
+    <div class="sh-num">06 / 联系</div>
+    <h2 class="sh-title">取得联系</h2>
+    <div class="sh-en">期待与你合作</div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-text">
+      <p class="ct-lead">如果你有合作意向、项目咨询，或希望了解更多作品细节，欢迎随时联系。</p>
+      <p class="ct-sign">— 郑 超</p>
+    </div>
+    <div class="contact-cards">
+      <a class="contact-card" href="tel:18837877088" data-magnetic>
+        <div class="cc-key">电话</div>
+        <div class="cc-val" data-editable data-key="contact_phone2">188 3787 7088</div>
+        <span class="cc-arrow">→</span>
+      </a>
+      <a class="contact-card" href="mailto:424573509@qq.com" data-magnetic>
+        <div class="cc-key">邮箱</div>
+        <div class="cc-val" data-editable data-key="contact_email2">424573509@qq.com</div>
+        <span class="cc-arrow">→</span>
+      </a>
+      <a class="contact-card" href="https://v.douyin.com/mI7HSZZaVoc/" target="_blank" rel="noopener" data-magnetic>
+        <div class="cc-key">抖音</div>
+        <div class="cc-val">@郑超</div>
+        <span class="cc-arrow">→</span>
+      </a>
+      <a class="contact-card" href="https://xhslink.com/m/1tJHti80kxD" target="_blank" rel="noopener" data-magnetic>
+        <div class="cc-key">小红书</div>
+        <div class="cc-val">江湖留笔</div>
+        <span class="cc-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="fl-name">郑 超 · 个人作品集</div>
+      <div class="fl-tip">© <span id="year"></span> All Rights Reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ 弹窗 ============ -->
+<div class="modal" id="workModal" hidden>
+  <div class="modal-mask"></div>
+  <div class="modal-panel">
+    <button class="modal-close" id="workModalClose">×</button>
+    <h3 id="workModalTitle">添加作品</h3>
+    <form id="workForm" class="form">
+      <input type="hidden" id="workId" />
+      <div class="field">
+        <label>作品标题</label>
+        <input type="text" id="workTitle" required placeholder="如：化龙 · 第十一届世界渲染大赛" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>分类</label>
+          <select id="workCategory" required>
+            <option value="video">影视</option>
+            <option value="3d">三维</option>
+            <option value="game">游戏</option>
+            <option value="web">交互</option>
+            <option value="image">图像</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>年份</label>
+          <input type="text" id="workYear" placeholder="2025" />
+        </div>
+      </div>
+      <div class="field">
+        <label>简介</label>
+        <textarea id="workDesc" rows="3" placeholder="作品的故事、创作思路或亮点..."></textarea>
+      </div>
+      <div class="field">
+        <label>外链（可选）</label>
+        <input type="url" id="workLink" placeholder="https://..." />
+      </div>
+      <div class="field">
+        <label>封面 / 媒体（可多张）</label>
+        <input type="file" id="workMedia" accept="image/*,video/*" multiple />
+        <div class="media-preview" id="mediaPreview"></div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-ghost" id="workCancelBtn">取消</button>
+        <button type="submit" class="btn btn-primary">保存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="viewModal" hidden>
+  <div class="modal-mask"></div>
+  <div class="modal-panel modal-panel-lg">
+    <button class="modal-close" id="viewModalClose">×</button>
+    <div id="viewContent"></div>
+  </div>
+</div>
+
+<div class="modal" id="listEditModal" hidden>
+  <div class="modal-mask"></div>
+  <div class="modal-panel">
+    <button class="modal-close" id="listEditClose">×</button>
+    <h3 id="listEditTitle">编辑</h3>
+    <form id="listEditForm" class="form"></form>
+  </div>
+</div>
+
+<script src="./js/data.js?v=20260522n"></script>
+<script src="./js/store.js?v=20260522n"></script>
+<script src="./js/render.js?v=20260522n"></script>
+<script src="./js/portfolio.js?v=20260522n"></script>
+<script src="./js/edit.js?v=20260522n"></script>
+<script src="./js/main.js?v=20260522n"></script>
+</body>
+</html>
