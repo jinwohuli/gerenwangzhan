@@ -282,7 +282,7 @@ window.DEFAULT_DATA = {
       desc: '基于 Unreal Engine 5 的虚幻地编（关卡设计）练习作品。运用 Lumen 全局光照、Nanite 虚拟微多边形几何体、Megascans 高质量资产库，进行场景搭建、地形塑形、植被分布、光照氛围与镜头机位调度的系统训练。聚焦于真实感场景构建、电影级光影渲染与关卡叙事氛围营造，积累从空旷地形到完整场景的全流程工作经验，为虚拟制片与实时渲染项目打下扎实基础。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/ue5-practice.mp4' }
+        { type: 'video', src: './assets/ue5-practice.mp4' }
       ]
     },
     {
