@@ -1370,26 +1370,28 @@ body.editing .add-list-item-btn { display: inline-flex; }
 }
 
 @media (max-width: 768px) {
-  :root { --pad-x: 22px; }
+  :root { --pad-x: 16px; }
   html, body { width: 100%; overflow-x: hidden; }
-  body { font-size: 15px; }
+  body { font-size: 14px; }
 
+  /* 导航 */
   .nav {
-    padding: 12px var(--pad-x);
-    background: rgba(6,7,11,0.72);
+    padding: 10px var(--pad-x);
+    background: rgba(6,7,11,0.82);
     backdrop-filter: blur(18px) saturate(140%);
     border-bottom: 1px solid var(--line-soft);
   }
-  .nav.scrolled { padding: 10px var(--pad-x); }
-  .nav-inner { gap: 12px; }
-  .logo-mark { width: 34px; height: 34px; font-size: 18px; }
-  .ln-cn { font-size: 14px; letter-spacing: 3px; }
-  .ln-en { font-size: 9px; letter-spacing: 2px; }
+  .nav.scrolled { padding: 8px var(--pad-x); }
+  .nav-inner { gap: 8px; }
+  .logo-mark { width: 30px; height: 30px; font-size: 16px; border-width: 0.5px; }
+  .logo-name { gap: 4px; }
+  .ln-cn { font-size: 13px; letter-spacing: 3px; white-space: nowrap; }
+  .ln-en { display: none; }
   .nav-cta {
     display: inline-flex !important;
     flex: 0 0 auto;
-    padding: 8px 12px;
-    font-size: 11px;
+    padding: 7px 10px;
+    font-size: 10px;
     letter-spacing: 1px;
   }
   .nav-links { display: none !important; }
@@ -1402,49 +1404,51 @@ body.editing .add-list-item-btn { display: inline-flex; }
     letter-spacing: 1px;
   }
 
+  /* Hero 区域 */
   .hero {
-    min-height: 620px;
-    height: 100svh;
+    min-height: 100svh;
+    height: auto;
+    min-height: -webkit-fill-available;
   }
   .hero-video { object-fit: cover; }
-  .hero::before { width: 360px; height: 360px; right: -28%; top: -10%; }
-  .hero-flow, .hero-mountains { opacity: 0.75; }
+  .hero::before { width: 300px; height: 300px; right: -30%; top: -15%; }
+  .hero-flow, .hero-mountains { opacity: 0.65; }
   .hero-inner {
-    position: absolute;
-    inset: 0;
-    padding: 88px var(--pad-x) 102px;
-    justify-content: flex-end;
-    overflow-y: auto;
+    position: relative;
+    padding: calc(60px + env(safe-area-inset-top)) var(--pad-x) 40px;
+    justify-content: flex-start;
+    overflow-y: visible;
   }
   .hero-eyebrow {
-    gap: 8px;
-    padding: 7px 12px;
-    margin-bottom: 22px;
-    font-size: 10px;
+    gap: 6px;
+    padding: 6px 10px;
+    margin-bottom: 18px;
+    font-size: 9px;
     letter-spacing: 1.5px;
     flex-wrap: wrap;
   }
   .he-divider { display: none; }
-  .hero-headline { margin-bottom: 28px; }
+  .he-text-2 { display: none; }
+  .hero-headline { margin-bottom: 24px; }
   .hero-headline h1 {
-    font-size: clamp(44px, 18vw, 72px);
-    letter-spacing: 3px;
-    line-height: 1.06;
+    font-size: clamp(36px, 14vw, 58px);
+    letter-spacing: 4px;
+    line-height: 1.1;
   }
   .hero-meta {
-    gap: 18px;
-    padding: 18px 0;
-    margin-bottom: 22px;
+    gap: 16px;
+    padding: 16px 0;
+    margin-bottom: 20px;
   }
-  .hm-name { font-size: 21px; letter-spacing: 5px; }
-  .hm-name span { display: block; margin: 4px 0 0; font-size: 12px; }
-  .hm-role { font-size: 11px; letter-spacing: 1.5px; }
-  .hm-right { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hm-name { font-size: 18px; letter-spacing: 4px; }
+  .hm-name span { display: block; margin: 3px 0 0; font-size: 11px; }
+  .hm-role { font-size: 10px; letter-spacing: 1.5px; }
+  .hm-right { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .btn {
     justify-content: center;
-    padding: 12px 14px;
-    font-size: 12px;
-    letter-spacing: 1.8px;
+    padding: 11px 12px;
+    font-size: 11px;
+    letter-spacing: 2px;
   }
   .hero-foot { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; }
   .hf-num { font-size: 28px; }
@@ -1486,16 +1490,41 @@ body.editing .add-list-item-btn { display: inline-flex; }
 }
 
 @media (max-width: 420px) {
-  :root { --pad-x: 16px; }
-  .nav { padding-left: 14px; padding-right: 14px; }
-  .logo-name { max-width: 80px; }
-  .ln-en { display: none; }
-  .nav-cta { padding: 7px 10px; font-size: 10px; }
+  :root { --pad-x: 14px; }
+  .nav { padding-left: 12px; padding-right: 12px; }
+  .logo-mark { width: 28px; height: 28px; font-size: 15px; }
+  .ln-cn { font-size: 12px; letter-spacing: 2px; }
+  .nav-cta { padding: 6px 8px; font-size: 9px; }
   .nav-links { display: none !important; }
-  .edit-toggle { bottom: 20px; }
-  .hero { min-height: 680px; }
-  .hero-inner { padding-bottom: 140px; }
-  .hm-right, .hero-foot { grid-template-columns: 1fr; }
-  .btn { width: 100%; }
-  .hero-cta-hint { bottom: 132px; width: calc(100% - 44px); }
+
+  .hero {
+    min-height: auto;
+    height: auto;
+    min-height: -webkit-fill-available;
+  }
+  .hero-inner {
+    padding-top: calc(52px + env(safe-area-inset-top));
+    padding-bottom: 32px;
+  }
+  .hero-headline h1 {
+    font-size: clamp(32px, 13vw, 48px);
+    letter-spacing: 3px;
+  }
+  .hero-headline { margin-bottom: 20px; }
+  .hm-name { font-size: 16px; letter-spacing: 3px; }
+  .btn { padding: 10px 10px; font-size: 10px; }
+  .edit-toggle { bottom: 18px; }
+
+  /* 统计数据 */
+  .hero-foot {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .hf-num { font-size: 22px; margin-bottom: 4px; }
+  .hf-label { font-size: 9px; letter-spacing: 1px; }
+
+  .footer {
+    margin-top: 40px;
+    padding: 24px var(--pad-x) calc(80px + env(safe-area-inset-bottom));
+  }
 }
