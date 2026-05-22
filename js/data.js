@@ -161,7 +161,7 @@ window.DEFAULT_DATA = {
       desc: '以"极限狂飙"为主题，独立完成从分镜到成片的新国风仙侠题材 3DCG 短片。抖音播放 545 万+、小红书 47 万+。',
       link: 'https://v.douyin.com/ZmLvz0BXvpU/',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/hualong.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/hualong.mp4' }
       ]
     },
     {
@@ -172,7 +172,7 @@ window.DEFAULT_DATA = {
       desc: '融合水墨艺术与仙侠元素的 3DCG 短片，Blender 动态粒子与风格化渲染。抖音播放 1800 万+。',
       link: 'https://v.douyin.com/LNGlzwjR9NA/',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/shuimo.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/shuimo.mp4' }
       ]
     },
     {
@@ -183,7 +183,7 @@ window.DEFAULT_DATA = {
       desc: '采用 AI 原型 + 代码智能修改的 Vibe Coding 工作流，独立完成 3D 交互式全球地图，展示 100+ 灵异事件。',
       link: 'https://jinwohuli.github.io/guiyishijianlu/',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/guiyi-demo.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/guiyi-demo.mp4' }
       ]
     },
     {
@@ -194,7 +194,7 @@ window.DEFAULT_DATA = {
       desc: '基于 RPG Maker 的校园推理游戏，6 名嫌疑人与多场景搜证，非线性推理体验。',
       link: 'https://jinwohuli.itch.io/tuilixiaoshuoshijie',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/tuili-demo.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/tuili-demo.mp4' }
       ]
     },
     {
@@ -205,7 +205,7 @@ window.DEFAULT_DATA = {
       desc: '基于《卡拉比丘》的二次创作互动叙事游戏。使用 WebGAL 引擎搭建整体框架，完成交互逻辑设计与脚本编写，包括分支选项、场景跳转、变量判定等，确保多线剧情稳定运行。负责全流程多媒体资源管理与实现：搜集筛选角色立绘、背景、音效及视频素材，并在引擎内插入调试，提升视觉与节奏表现。深度参与剧情策划讨论，提出主线走向、角色对话及结局的设计建议，协助优化叙事节奏与玩家代入感。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/zhuguang.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/zhuguang.mp4' }
       ]
     },
     {
@@ -216,7 +216,7 @@ window.DEFAULT_DATA = {
       desc: '面向海外社交媒体平台的 AI 真人短剧（中国医疗主题），结合海外受众需求与品牌定位，独立完成剧本撰写、角色设定及分镜设计、视频生成、剪辑成片、音频制作。运用 AIGC 技术将短篇小说转化为短剧内容，探索 AI 在影视创作中的应用可能性。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/medical-drama.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/medical-drama.mp4' }
       ]
     },
     {
@@ -227,7 +227,7 @@ window.DEFAULT_DATA = {
       desc: 'AI 多风格视觉表达练习作品集。借助 TapNow、即梦 AI、Vidu AI、可灵 AI、海螺 AI 等工具，探索写实、动漫、水墨、赛博等不同视觉风格之间的转化与表达，持续打磨在镜头语言、叙事节奏与画面氛围上的把控。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/aigc-collection.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/aigc-collection.mp4' }
       ]
     },
     {
@@ -238,7 +238,7 @@ window.DEFAULT_DATA = {
       desc: '以新海诚标志性的视觉语言为灵感，运用 AI 工具复现其特有的光影氛围与色彩调性 —— 高饱和的天空、温柔的逆光、青春叙事的微妙情绪。从画面构图、镜头节奏到光影色彩进行整体把控，呈现细腻、治愈、富有诗意的动画质感，是对个人 AI 视觉表达与风格化叙事能力的一次集中实践。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/shinkai-style.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/shinkai-style.mp4' }
       ]
     },
     {
@@ -249,7 +249,7 @@ window.DEFAULT_DATA = {
       desc: '面向海外社交流媒体平台打造的 AI 医疗主题宣传片。围绕中国医疗的专业实力与人文关怀，独立完成创意策划、剧本撰写、角色设定、分镜设计与成片输出全流程。结合海外受众审美与传播逻辑，运用 AIGC 技术高效生成镜头与角色，融合写实化光影、温暖色调与节奏化剪辑，传递专业、可信、有温度的医疗品牌形象。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/medical-ad.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/medical-ad.mp4' }
       ]
     },
     {
@@ -260,7 +260,7 @@ window.DEFAULT_DATA = {
       desc: '为企业定制的马年新春主题宣传片。以"马"的奔腾意象呼应企业蓬勃向上的发展势能，融合国风视觉与节庆氛围，独立完成创意构思、分镜设计与全流程 AI 创作。运用 AIGC 工具高效生成关键镜头与角色，结合节奏化剪辑、动感配乐与朱红金的传统色调，呈现喜庆、磅礴、富有仪式感的品牌叙事，传递企业一往无前的精神气质与新年祝福。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/horse-year-ad.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/horse-year-ad.mp4' }
       ]
     },
     {
@@ -271,7 +271,7 @@ window.DEFAULT_DATA = {
       desc: 'After Effects 动效与合成练习作品。聚焦动态图形（Motion Graphics）、关键帧节奏、图层蒙版与表达式应用，探索镜头转场、文字动效与视觉特效的细节表达。通过持续练习打磨在动画曲线、节奏把控与画面构成上的基本功，为后续的视频后期、特效合成与品牌动效项目积累扎实的工具与审美经验。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/ae-practice.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/ae-practice.mp4' }
       ]
     },
     {
@@ -282,7 +282,7 @@ window.DEFAULT_DATA = {
       desc: '基于 Unreal Engine 5 的虚幻地编（关卡设计）练习作品。运用 Lumen 全局光照、Nanite 虚拟微多边形几何体、Megascans 高质量资产库，进行场景搭建、地形塑形、植被分布、光照氛围与镜头机位调度的系统训练。聚焦于真实感场景构建、电影级光影渲染与关卡叙事氛围营造，积累从空旷地形到完整场景的全流程工作经验，为虚拟制片与实时渲染项目打下扎实基础。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/ue5-practice.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/ue5-practice.mp4' }
       ]
     },
     {
@@ -293,7 +293,7 @@ window.DEFAULT_DATA = {
       desc: 'Blender 全流程三维练习作品。涵盖建模、UV 展开、材质贴图、灯光布光、动画绑定与 Cycles/Eevee 渲染等关键环节，探索硬表面建模、有机造型、风格化材质与电影级光影的综合表达。通过持续练习打磨从概念到成片的独立完成能力，沉淀对画面节奏、镜头语言与视觉氛围的整体把控，为后续的 3DCG 短片与项目创作积累扎实的工具与审美经验。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/blender-practice.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/blender-practice.mp4' }
       ]
     },
     {
@@ -304,7 +304,7 @@ window.DEFAULT_DATA = {
       desc: '以日系青春动画为视觉灵感的 AI 短片片段。围绕「猫与花」这一温柔意象，借助 AI 工具复刻日系作品标志性的视觉语言 —— 通透干净的天空、细腻的逆光、阳光穿过枝叶的斑驳光影，以及少年感的青春情绪。从画面构图、色彩调性到镜头节奏整体把控，营造治愈、清新、富有夏日气息的诗意氛围，是一次对个人 AI 视觉表达与情绪化叙事能力的集中实践。',
       link: '',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/cat-and-flower.mp4' }
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/cat-and-flower.mp4' }
       ]
     },
     {
