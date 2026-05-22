@@ -529,3 +529,31 @@ function initReveal() {
   });
 }
 window.initReveal = initReveal;
+
+// ========== 自动更新年份 & 创作年限 ==========
+(function () {
+  var now = new Date();
+  var curYear = now.getFullYear();
+
+  // 作品集年份：自动更新为当前年份
+  var heTextEl = document.querySelector('.he-text');
+  if (heTextEl && heTextEl.textContent.indexOf('作品集') !== -1) {
+    heTextEl.textContent = '作品集 · ' + curYear;
+  }
+
+  // 创作年限：每年9月1日+1（从2023年9月起算）
+  // 当前显示03年，说明起始年为2023年9月
+  var START_MONTH = 8;   // 9月 (0-indexed)
+  var START_DAY = 1;
+  var START_YEAR = 2023;
+  var years;
+  if (now.getMonth() > START_MONTH || (now.getMonth() === START_MONTH && now.getDate() >= START_DAY)) {
+    years = curYear - START_YEAR;
+  } else {
+    years = curYear - START_YEAR - 1;
+  }
+  var statNumEl = document.querySelector('[data-key="hero_stat3_num"]');
+  if (statNumEl) {
+    statNumEl.textContent = String(years).padStart(2, '0');
+  }
+})();
