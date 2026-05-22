@@ -194,7 +194,7 @@ window.DEFAULT_DATA = {
       desc: '基于 RPG Maker 的校园推理游戏，6 名嫌疑人与多场景搜证，非线性推理体验。',
       link: 'https://jinwohuli.itch.io/tuilixiaoshuoshijie',
       media: [
-        { type: 'video', src: 'https://geren-videos-1424535894.cos.ap-nanjing.myqcloud.com/videos/tuili-demo.mp4' }
+        { type: 'video', src: './assets/tuili-demo.mp4' }
       ]
     },
     {

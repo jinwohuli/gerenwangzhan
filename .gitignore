@@ -1,6 +1,7 @@
 *.mp4
 !assets/ue5-practice.mp4
 !assets/hero.mp4
+!assets/tuili-demo.mp4
 *.mov
 *.avi
 *.webm
