@@ -1399,7 +1399,7 @@ body.editing .add-list-item-btn { display: inline-flex; }
     bottom: max(10px, env(safe-area-inset-bottom));
     z-index: 120;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 4px;
     margin: 0;
     padding: 8px;
