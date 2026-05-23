@@ -3,7 +3,7 @@ const STORE_KEY = 'yantai_site_data_v1';
 const VERSION_KEY = 'yantai_site_version';
 // 数据结构版本号：仅在数据结构发生不兼容变更时升级（如字段类型变化）。
 // 普通的默认值更新不需要升级——会通过 Object.assign 智能合并，保留用户编辑。
-const CURRENT_VERSION = 'cinematic-cn-v10-versionfix';
+const CURRENT_VERSION = 'cinematic-cn-v11-cleanprojects';
 const PORTFOLIO_MEDIA_KEY = 'yantai_portfolio_media_v1';
 
 // 深度合并：用 user 覆盖 base，但保留 base 中 user 没有的字段（包括嵌套对象）
