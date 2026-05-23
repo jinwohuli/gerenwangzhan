@@ -3,7 +3,7 @@ const STORE_KEY = 'yantai_site_data_v1';
 const VERSION_KEY = 'yantai_site_version';
 // 数据结构版本号：仅在数据结构发生不兼容变更时升级（如字段类型变化）。
 // 普通的默认值更新不需要升级——会通过 Object.assign 智能合并，保留用户编辑。
-const CURRENT_VERSION = 'cinematic-cn-v9-guiyi';
+const CURRENT_VERSION = 'cinematic-cn-v10-versionfix';
 const PORTFOLIO_MEDIA_KEY = 'yantai_portfolio_media_v1';
 
 // 深度合并：用 user 覆盖 base，但保留 base 中 user 没有的字段（包括嵌套对象）
@@ -109,17 +109,18 @@ window.Store = {
     try {
       const raw = localStorage.getItem(STORE_KEY);
       const userData = raw ? JSON.parse(raw) : null;
+      const storedVersion = localStorage.getItem(VERSION_KEY);
       const defaults = JSON.parse(JSON.stringify(window.DEFAULT_DATA));
 
-      // 没有用户数据 → 直接用默认
-      if (!userData) {
+      // 版本不匹配或无用户数据 → 直接用最新默认数据（访客每次更新都能看到最新内容）
+      if (!userData || storedVersion !== CURRENT_VERSION) {
         this.data = defaults;
         localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
         this.save();
         return this.data;
       }
 
-      // 智能合并：保留用户编辑，补充默认数据中新增的字段
+      // 版本匹配 → 智能合并：保留用户编辑，补充默认数据中新增的字段
       this.data = this.mergeUserData(defaults, userData);
       localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
       this.save();
