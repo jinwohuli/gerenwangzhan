@@ -47,6 +47,18 @@ window.DEFAULT_DATA = {
 
   experience: [
     {
+      company: '北京趣加科技有限公司',
+      role: 'AIGC 创意广告',
+      period: '2026.07 - 2026.07',
+      points: [
+        '负责游戏《Tiles Survive》AI 广告创意从 0 到 1 落地，独立完成内容构思、风格定义、AI 生成到成片输出全流程，具备完整的 AIGC 广告创作闭环能力。',
+        '搭建三类广告内容矩阵：真人引流 + AI 玩法衔接的组合式广告、全 AI 生成的剧情化玩法广告、UE 素材风格化重制广告，适配不同渠道的用户转化偏好。',
+        '熟练通过 AI 工具实现多元美术风格，覆盖 3D 卡通、2D 美漫、吉卜力、像素、积木、毛毡、粘土等，通过风格差异化提升素材测试广度与跑量潜力。',
+        '高效响应买量投放需求，快速迭代高质量素材，提升游戏广告素材的生产效率与内容丰富度。'
+      ],
+      result: ''
+    },
+    {
       company: '腾讯云雀',
       role: 'AI 视频美学评估',
       period: '2026.04 - 至今',
@@ -361,6 +373,17 @@ window.DEFAULT_DATA = {
       link: '',
       media: [
         { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/winter-survival.mp4' }
+      ]
+    },
+    {
+      id: 'w19',
+      title: '第五人格 · AI 创意广告',
+      category: 'video',
+      year: '2026',
+      desc: '为网易《第五人格》游戏制作的 AI 创意广告短片《让爱相遇》。从脚本策划、分镜设计到视频生成、后期剪辑均由一人独立完成，围绕新海诚动漫风格进行创意表达，运用 AIGC 工具全流程制作，延续了 AI 工作流在商业广告创作中的完整闭环能力。',
+      link: '',
+      media: [
+        { type: 'video', src: 'https://geren-videos-1424535894.cos.accelerate.myqcloud.com/videos/identity-v-ad.mp4' }
       ]
     }
   ]
